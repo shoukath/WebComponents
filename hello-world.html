@@ -1,0 +1,12 @@
+<script>
+var callJavascriptFunction = function () {
+	console.log('Hello');
+}
+class HelloWorld extends HTMLElement {
+    connectedCallback () {
+        this.innerHTML = '<div>hello, world!</div>';
+        this.onclick = callJavascriptFunction;
+    }
+}
+customElements.define( 'hello-world', HelloWorld )
+</script>
