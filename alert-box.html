@@ -1,0 +1,23 @@
+<template>
+	<style>
+		h1 {
+			color: blue;
+		}
+	</style>
+	<h1>sdfds</h1>
+</template>
+<script>
+	var thisDoc = document.currentScript.ownerDocument;
+	var thatDoc = document;
+
+	var template = thisDoc.querySelector('template');
+	var Element = Object.create(HTMLElement.prototype);
+
+	Element.createdCallback = function () {
+		var shadowRoot = this.createShadowRoot();
+		var clone = thatDoc.importNode(template.content, true);
+		shadowRoot.appendChild(clone);
+	}
+
+	thatDoc.registerElement('alert-box', {prototype: Element});
+</script>
