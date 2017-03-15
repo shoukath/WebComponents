@@ -1,0 +1,21 @@
+{
+  "name": "WebComponents",
+  "homepage": "https://github.com/shoukath/WebComponents",
+  "authors": [
+    "Shoukath Khan <sfazlullakhan@expedia.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.24"
+  }
+}

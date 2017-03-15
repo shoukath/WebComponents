@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Alert Box</title>
-	<link rel="import" href="alert-box.html">
+	<title>Web Components</title>
+	<link rel="import" href="components/alert-box.comp.html">
 	<style type="text/css">
-		h1 {
-			color: red;
+		h5 {
+			color: white;
 		}
 	</style>
 </head>
 <body>
-	<h1>Alert Box</h1>
-	<alert-box></alert-box>
+	<alert-box theme="warning">This is an alert from the parent!</alert-box>
+	<alert-box theme="success" id="comp2">This is an alert from the parent!</alert-box>
 </body>
 </html>

@@ -1,0 +1,63 @@
+<template>
+	<style type="text/css">
+		#alert {
+			font-family: 'Roboto', sans-serif;
+			padding: 10px;
+			font-size: 25px;
+			color: white;
+			border-left: 2px solid transparent;
+		}
+		h5 {
+			margin: 0;
+		}
+		#alert.error {
+			border-color: #b80000;
+    		background: #fad4d4;
+		    color: #b80000;
+		}
+		#alert.warning {
+			border-color: #7a5505;
+    		background: #f0dcb4;
+    		color: #7a5505;
+		}
+		#alert.success {
+		    border-left: 2px solid #2f7000;
+		    background: #d2e6c8;
+		    color: #2f7000;
+		}
+	</style>
+	<div id="alert" class="success">
+		<h5></h5>
+	</div>
+</template>
+<script type="text/javascript">
+(function () {
+	var template = document.currentScript.ownerDocument.querySelector('template');
+
+	var elementProto = Object.create(HTMLElement.prototype);
+
+	elementProto.createdCallback = function () {
+		var clone = document.importNode(template.content, true);
+
+		this.container = clone.querySelector('#alert');
+
+		clone.querySelector('h5').append(this.innerHTML);
+
+		this.updateTheme(this.getAttribute('theme'));
+
+		this.createShadowRoot().appendChild(clone);
+	}
+
+	elementProto.attributeChangedCallback = function (attribute, oldVal, newVal) {
+		if (attribute === 'theme'){
+			this.updateTheme(newVal);
+		}
+	}
+
+	elementProto.updateTheme = function (theme) {
+		this.container.className = theme;
+	}
+
+	document.registerElement('alert-box', {prototype: elementProto});
+})()
+</script>

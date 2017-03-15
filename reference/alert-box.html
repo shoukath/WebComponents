@@ -1,0 +1,145 @@
+<template>
+	<style>
+		#alert {
+			height: 100px;
+			color: white;
+			font-weight: bold;
+		}
+		#alert.danger {
+			background: red;
+		}
+		#alert.warning {
+			background: yellow;
+		}
+		#alert.success {
+			background: green;
+		}
+	</style>
+	<div id="alert" class="success">
+		<h5></h5>
+	</div>
+</template>
+
+<script>
+	// var thisDoc = document.currentScript.ownerDocument;
+	// var thatDoc = document;
+
+	// var template = thisDoc.querySelector('template');
+	// var Element = Object.create(HTMLElement.prototype);
+
+	// Element.createdCallback = function () {
+	// 	var shadowRoot = this.createShadowRoot();
+	// 	var clone = thatDoc.importNode(template.content, true);
+	// 	shadowRoot.appendChild(clone);
+	// }
+
+	// thatDoc.registerElement('alert-box', {prototype: Element});
+	(function () {
+		var template = document._currentScript.ownerDocument.querySelector('template');
+
+		var elementProto = Object.create(HTMLElement.prototype);
+
+		elementProto.createdCallback = function () {
+			var clone = document.importNode(template.content, true);
+
+			clone.querySelector('h5').append(this.innerHTML);
+
+			// this.updateTheme();
+
+			this.createShadowRoot().appendChild(clone);
+		}
+
+		elementProto.updateTheme = function (color) {
+			this.shadowRoot.querySelector('#alert').className = color;
+		}
+
+		elementProto.attributeChangedCallback = function (attribute, oldVal, newVal) {
+			console.log(attribute);
+			if (attribute === 'theme') {
+				this.updateTheme(newVal);
+			}
+		}
+
+		document.registerElement('alert-box', {prototype: elementProto});
+	})();
+
+
+
+
+	var template = document.currentScript.ownerDocument.querySelector('template');
+
+	var elementProto = Object.create(HTMLElement.prototype);
+
+	elementProto.createdCallback = function () {
+		var clone = document.importNode(template.content, true);
+
+		this.createShadowRoo().appendChild(clone);
+	}
+
+	document.registerElement('alert-box', {prototype: elementProto});
+</script>
+
+
+
+
+
+
+
+
+<templ<!-- ate>
+	<style>
+		#alert {
+			font-family: 'Roboto', sans-serif;
+			padding: 10px;
+			font-size: 25px;
+			color: white;
+			border-left: 2px solid transparent;
+		}
+		h5 {
+			margin: 0;
+		}
+		#alert.error {
+			border-color: #b80000;
+    		background: #fad4d4;
+		    color: #b80000;
+		}
+		#alert.warning {
+			border-color: #7a5505;
+    		background: #f0dcb4;
+    		color: #7a5505;
+		}
+		#alert.success {
+		    border-left: 2px solid #2f7000;
+		    background: #d2e6c8;
+		    color: #2f7000;
+		}
+	</style>
+	<div id="alert" class="warning">
+		<h5>This is an alert!</h5>
+	</div>
+</template>
+<script type="text/javascript">
+	(function () {
+		var template = document.currentScript.ownerDocument.querySelector('template');
+
+		var elementProto = Object.create(HTMLElement.prototype);
+
+		elementProto.createdCallback = function () {
+			var clone = document.importNode(template.content, true);
+
+			this.createShadowRoot().appendChild(clone)
+		}
+
+		elementProto.attributeChangedCallback = function (attrName, oldVal, newVal) {
+			if (attrName === 'theme') {
+				this.updateTheme(newVal);
+			}
+		}
+
+		elementProto.updateTheme = function (theme) {
+			this.shadowRoot.querySelector('#alert').className = theme;
+		}
+
+		document.registerElement('alert-box', {prototype: elementProto});
+	})()
+</script> -->
